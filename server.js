@@ -13,9 +13,7 @@ var app = express();
 // Basic Configuration 
 var port = process.env.PORT || 3000;
 
-const uri = "mongodb+srv://admin:1123581321345589144233@cluster0.izupr.gcp.mongodb.net/urlshortener?retryWrites=true&w=majority";
-
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const Url = mongoose.model('Url', {
   originalUrl: String,
