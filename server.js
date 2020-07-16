@@ -76,12 +76,13 @@ app.post('/api/shorturl/new', function (req, res) {
 
 app.get('/:u', function(req, res){
   Url.findOne({shortenedUrl: req.params.u}).exec(function(err, result){
-    if (err) {
-      res.json({
-        error: "url doesn't exist in database"
-      })
-    } else {
+    if (result) {
       res.redirect(result.originalUrl);
+    }
+    else {
+      res.json({
+        error: "url does not exist"
+      })
     }
   });
 });
