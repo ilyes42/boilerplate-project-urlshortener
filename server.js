@@ -5,6 +5,7 @@ var mongo = require('mongodb');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var dns = require("dns");
+var os = require('os');
 
 var cors = require('cors');
 
@@ -62,7 +63,8 @@ app.post('/api/shorturl/new', function (req, res) {
         shortenedUrl: count
       })
       url.save().then(res.json({
-        message: "success"
+        original_url: req.body.url,
+        short_url: count
       }))
     })
   } else {
